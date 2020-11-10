@@ -5,8 +5,11 @@ import Header from './AppComponents/Header';
 import "./App.css";
 
 function App() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   useEffect(() => {
+    const getData = () => {
+
+  
     axios
     .get(
       `https://api.nasa.gov/planetary/apod?api_key=zqbVT1Tkx9kHqMrwhi7nXnjFnR0cHesfdOTmOuNf&date=2020-10-31`
@@ -16,13 +19,14 @@ function App() {
     }).catch((err) => {
       console.log('Error occured in useEffect of Nasa API: ', err);
     })
-    return () => {}
+  }
+  getData();
   }, []);
   
   
   
   return (
-    <div className="App">
+    <div className='App'>
       {data !== null ?
       <Body url={data.url} explanation={data.explanation} /> : <span></span>
       }
